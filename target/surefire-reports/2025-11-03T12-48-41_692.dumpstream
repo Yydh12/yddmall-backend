@@ -1,0 +1,5 @@
+# Created at 2025-11-03T12:48:41.970
+Boot Manifest-JAR contains absolute paths in classpath 'E:\bysj\有点多商城-v1 - 副本\yddmall\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

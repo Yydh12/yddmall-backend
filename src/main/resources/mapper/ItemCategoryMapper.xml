@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.yddmall.mapper.ItemCategoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.yddmall.entity.ItemCategory">
+        <id column="cid" property="cid" />
+        <result column="parent_cid" property="parentCid" />
+        <result column="name" property="name" />
+        <result column="level" property="level" />
+        <result column="is_leaf" property="isLeaf" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cid, parent_cid, name, level, is_leaf
+    </sql>
+
+</mapper>

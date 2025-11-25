@@ -1,0 +1,56 @@
+package com.example.yddmall.entity;
+import com.baomidou.mybatisplus.annotation.TableField;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.math.BigDecimal;
+import java.util.Date;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+
+@Data
+@Schema(description = "商品基础信息表")
+public class Item {
+
+    @Schema(description = "商品数字ID，全局唯一")
+        @TableId(value = "item_id", type = IdType.AUTO)
+    private Long itemId;
+
+    @Schema(description = "商品编号（用于文件目录及外部展示）")
+    @TableField("item_no")
+    private String itemNo;
+
+    @Schema(description = "商家货流售后信息，JSON字符串格式")
+    private String aftersale;
+
+    @Schema(description = "商品标题")
+    private String title;
+
+    @Schema(description = "卖点短描述")
+    private String subTitle;
+
+    @Schema(description = "一口价/划线价")
+    private BigDecimal price;
+
+    @Schema(description = "主图URL列表，逗号分隔的图片路径字符串")
+    private String picUrl;
+
+    @Schema(description = "末级淘宝类目ID")
+    private Long cid;
+
+    @Schema(description = "品牌ID")
+    private String brand;
+
+    @Schema(description = "1上架2下架3删除")
+    private Byte status;
+
+    @Schema(description = "上架时间")
+    private Date listTime;
+
+    @Schema(description = "最后更新时间")
+    private Date lastUpdate;
+
+    @Schema(description = "店铺主账号ID")
+    private Long sellerId;
+
+}

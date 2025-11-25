@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.yddmall.mapper.MerchantMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.yddmall.entity.Merchant">
+        <id column="merchant_id" property="merchantId" />
+        <result column="merchant_name" property="merchantName" />
+        <result column="merchant_no" property="merchantNo" />
+        <result column="contact_person" property="contactPerson" />
+        <result column="contact_phone" property="contactPhone" />
+        <result column="address" property="address" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="merchant_pic" property="merchantPic" />
+        <result column="business_hours" property="businessHours" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        merchant_id, merchant_name, merchant_no, contact_person, contact_phone, address, status, create_time, update_time, merchant_pic, business_hours
+    </sql>
+
+</mapper>

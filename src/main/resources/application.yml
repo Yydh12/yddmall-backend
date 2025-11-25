@@ -1,0 +1,43 @@
+
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    #自定义swagger前端请求路径,输入http:localhost:8080/swagger-ui会自动重定向到swagger页面
+    path: /swagger-ui
+    #对接口标签（Controller 类）和方法按字母顺序排序，界面更整洁。
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs  #swagger后端请求地址
+    enabled: true   #是否开启文档功能
+
+upload:
+  base-path: ${UPLOAD_BASE_PATH:/data/uploads/images}
+  access-url: /images
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-stacktrace: always
+
+mybatis-plus:
+  type-handlers-package: com.baomidou.mybatisplus.extension.handlers  # 所在包
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 地理编码服务配置
+geo:
+  # 天地图 API 配置
+  tianditu:
+    # 浏览器端（前端Leaflet加载底图用）
+    browser-key: 0e49bcbfd2a87d8226f4fa0e99c52e52
+    # 服务端（后端/服务器调用搜索与逆地理编码用）——请替换为天地图“服务端”类型Key
+    server-key: 1bcd05acd2f2b7fc6189b3ff3aa73e7c
+    base-url: https://api.tianditu.gov.cn
+    min-interval-ms: 150
+
+# 配置配送起点（默认北京天安门附近）
+delivery:
+  origin:
+    lat: 39.9042
+    lng: 116.4074
