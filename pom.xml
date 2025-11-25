@@ -141,6 +141,13 @@
             <scope>runtime</scope> <!-- 运行时依赖，编译不依赖 -->
         </dependency>
 
+        <!-- PostgreSQL 驱动（Render 托管数据库） -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- Hutool工具类库，提供现成的雪花算法实现 -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -182,4 +189,3 @@
     </build>
 
 </project>
-
