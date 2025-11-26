@@ -19,6 +19,8 @@ WORKDIR /app
 ENV PORT=8080
 # 上传目录默认使用持久磁盘挂载路径
 ENV UPLOAD_BASE_PATH=/data/uploads/images
+# 默认启用生产配置（PostgreSQL 数据源等）
+ENV SPRING_PROFILES_ACTIVE=prod
 
 # 更稳妥地复制打包后的 JAR
 COPY --from=build /app/target/*.jar /app/app.jar
