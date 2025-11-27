@@ -16,7 +16,7 @@ upload:
   access-url: /images
 
 server:
-  port: ${PORT:8080}  # 如果 Render 没有传入 PORT，使用默认 8080
+  port: ${PORT}  # 如果 Render 没有传入 PORT，使用默认 8080
   address: 0.0.0.0    # 绑定所有 IP，确保外部可以访问
   error:
     include-stacktrace: always
