@@ -111,13 +111,12 @@ public class MerchantController {
 
     //通过id查询单条数据
     @GetMapping("/getMerchant/{merchantId}")
-    public ApiResponse<Merchant> getById(@PathVariable Long merchantId,HttpServletRequest request) {
-        Long userId = SessionUserUtils.getUserId(request);
-        if (userId == null) {
-            return new ApiResponse<>(401, "身份校验失败，请重新登录", null);
+    public ApiResponse<Merchant> getById(@PathVariable Long merchantId) {
+        Merchant m = merchantService.getById(merchantId);
+        if (m == null) {
+            return ResponseUtils.error(ResponseCode.BAD_REQUEST, "商户不存在");
         }
-        
-        return ResponseUtils.success(merchantService.getById(merchantId));
+        return ResponseUtils.success(m);
     }
 
     //新增数据

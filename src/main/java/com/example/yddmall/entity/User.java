@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.v3.oas.annotations.media.Schema;
+import com.baomidou.mybatisplus.annotation.TableName;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.util.Date;
 @Data
 @Builder
 @Schema(description = "商城权限用户表")
+@TableName("\"user\"")
 public class User implements Serializable {
 
     @Schema(description = "用户ID（主键，自增）")

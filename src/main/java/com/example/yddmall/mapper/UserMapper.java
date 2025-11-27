@@ -18,10 +18,10 @@ public interface UserMapper extends BaseMapper<User> {
      * 查询以ydd为前缀的用户名中数字部分最大的记录
      * @return 最大数字部分的用户名
      */
-    @Select("SELECT username FROM user " +
+    @Select("SELECT username FROM \"user\" " +
             "WHERE username LIKE 'ydd%' " +
-            "AND username REGEXP '^ydd[0-9]+$' " +
-            "ORDER BY CAST(SUBSTRING(username, 4) AS UNSIGNED) DESC " +
+            "AND username ~ '^ydd[0-9]+$' " +
+            "ORDER BY (substring(username, 4))::int DESC " +
             "LIMIT 1")
     String selectMaxYddUsername();
 
