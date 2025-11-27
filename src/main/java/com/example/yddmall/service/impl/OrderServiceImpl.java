@@ -75,6 +75,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         
         // 根据购物车项创建订单项（简化版本）
         List<OrderItem> orderItems = createOrderItemsFromCart(createOrderDTO.getCartItemIds(), userId);
+        if (orderItems == null || orderItems.isEmpty()) {
+            throw new RuntimeException("购物车为空或商品不属于当前用户");
+        }
         
         // 验证商品库存
         for (OrderItem item : orderItems) {
@@ -119,7 +122,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             item.setOrderId(order.getOrderId());
             item.setOrderNo(order.getOrderNo());
         }
-        orderItemMapper.batchInsert(orderItems);
+        if (orderItems != null && !orderItems.isEmpty()) {
+            orderItemMapper.batchInsert(orderItems);
+        }
         
         // 扣减库存
         for (OrderItem item : orderItems) {
@@ -180,6 +185,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         
         // 创建订单项
         List<OrderItem> orderItems = createOrderItemsFromDirect(directOrderDTO.getOrderItems());
+        if (orderItems == null || orderItems.isEmpty()) {
+            throw new RuntimeException("商品信息为空，无法创建订单");
+        }
         
         // 验证商品库存
         for (OrderItem item : orderItems) {
@@ -224,7 +232,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             item.setOrderId(order.getOrderId());
             item.setOrderNo(order.getOrderNo());
         }
-        orderItemMapper.batchInsert(orderItems);
+        if (orderItems != null && !orderItems.isEmpty()) {
+            orderItemMapper.batchInsert(orderItems);
+        }
         
         // 扣减库存
         for (OrderItem item : orderItems) {
