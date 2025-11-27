@@ -22,13 +22,40 @@ public class AddressServiceImpl extends ServiceImpl<AddressMapper, Address> impl
     @Override
     @Transactional
     public Address addAddress(AddressDTO addressDTO, Long userId) {
+        if (addressDTO == null) {
+            throw new IllegalArgumentException("参数不能为空");
+        }
+        String rn = addressDTO.getReceiverName();
+        String rp = addressDTO.getReceiverPhone();
+        String pv = addressDTO.getProvince();
+        String ct = addressDTO.getCity();
+        String dt = addressDTO.getDistrict();
+        String da = addressDTO.getDetailAddress();
+        if (rn == null || rn.trim().isEmpty()) {
+            throw new IllegalArgumentException("请填写收货人姓名");
+        }
+        if (rp == null || rp.trim().isEmpty()) {
+            throw new IllegalArgumentException("请填写收货人手机号");
+        }
+        if (pv == null || pv.trim().isEmpty()) {
+            throw new IllegalArgumentException("请选择省份");
+        }
+        if (ct == null || ct.trim().isEmpty()) {
+            throw new IllegalArgumentException("请选择城市");
+        }
+        if (dt == null || dt.trim().isEmpty()) {
+            throw new IllegalArgumentException("请选择区县");
+        }
+        if (da == null || da.trim().isEmpty()) {
+            throw new IllegalArgumentException("请输入详细地址");
+        }
         // 如果这是第一个地址，设置为默认地址
         long count = this.count(new LambdaQueryWrapper<Address>().eq(Address::getUserId, userId));
         
         Address address = new Address();
         BeanUtils.copyProperties(addressDTO, address);
         address.setUserId(userId);
-        address.setIsDefault(count == 0 ? 1 : 0);
+        address.setIsDefault(count == 0 ? 1 : (addressDTO.getIsDefault() == null ? 0 : addressDTO.getIsDefault()));
         
         this.save(address);
         return address;

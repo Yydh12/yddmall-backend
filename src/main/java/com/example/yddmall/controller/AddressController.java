@@ -33,6 +33,8 @@ public class AddressController {
             
             Address address = addressService.addAddress(addressDTO, userId);
             return new ApiResponse<>(200, "添加成功", address);
+        } catch (IllegalArgumentException e) {
+            return new ApiResponse<>(400, e.getMessage(), null);
         } catch (Exception e) {
             return new ApiResponse<>(500, e.getMessage(), null);
         }

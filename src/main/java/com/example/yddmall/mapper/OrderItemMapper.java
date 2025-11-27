@@ -57,7 +57,7 @@ public interface OrderItemMapper extends BaseMapper<OrderItem> {
             + "<where>"
             + "i.seller_id = #{sellerId} "
             + "<if test='status != null'> AND i.status = #{status} </if>"
-            + "<if test='title != null and title != \"\"'> AND i.title LIKE CONCAT('%', #{title}, '%') </if>"
+            + "<if test='title != null and title != \"\"'> AND i.title LIKE '%' || #{title} || '%' </if>"
             + "</where>"
             + "GROUP BY oi.item_id "
             + "ORDER BY salesCount DESC"

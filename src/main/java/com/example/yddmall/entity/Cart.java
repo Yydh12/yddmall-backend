@@ -17,7 +17,7 @@ import java.util.Date;
 public class Cart implements Serializable {
 
     @Schema(description = "购物车ID（主键，自增）")
-    @TableId(value = "cart_id", type = IdType.AUTO)
+    @TableId(value = "cart_id", type = IdType.ASSIGN_ID)
     private Long cartId;
 
     @Schema(description = "用户ID（关联用户表）")

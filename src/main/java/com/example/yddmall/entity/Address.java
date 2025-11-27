@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @TableName("address")
 public class Address {
     
-    @TableId(value = "address_id", type = IdType.AUTO)
+    @TableId(value = "address_id", type = IdType.ASSIGN_ID)
     private Long addressId;
     
     @TableField("user_id")

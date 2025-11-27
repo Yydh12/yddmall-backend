@@ -26,7 +26,8 @@ public class SecurityConfig {
                     "/doc.html",
                     "/error",
                     "/favicon.ico",
-                    accessUrl + "/**"
+                    accessUrl + "/**",
+                    "/images/**"
                 ).permitAll()
                 .anyRequest().permitAll()
             )
@@ -35,4 +36,3 @@ public class SecurityConfig {
         return http.build();
     }
 }
-

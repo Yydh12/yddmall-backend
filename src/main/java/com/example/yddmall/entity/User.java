@@ -19,7 +19,7 @@ import java.util.Date;
 public class User implements Serializable {
 
     @Schema(description = "用户ID（主键，自增）")
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long userId;
 
     @Schema(description = "用户编号（用于文件目录及外部展示）")
