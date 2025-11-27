@@ -18,8 +18,8 @@ import java.util.Date;
 @TableName("\"user\"")
 public class User implements Serializable {
 
-    @Schema(description = "用户ID（主键，自增）")
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @Schema(description = "用户ID（主键，自生成）")
+    @TableId(value = "user_id", type = IdType.ASSIGN_ID)
     private Long userId;
 
     @Schema(description = "用户编号（用于文件目录及外部展示）")

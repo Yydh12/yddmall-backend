@@ -87,7 +87,15 @@ public class UserController {
     //新增数据
     @PostMapping("/register")
     public ApiResponse<User> save(@RequestBody User user) {
-        return ResponseUtils.success(userService.addUser(user));
+        try {
+            User created = userService.addUser(user);
+            if (created == null) {
+                return ResponseUtils.error(ResponseCode.INTERNAL_SERVER_ERROR, "注册失败");
+            }
+            return ResponseUtils.success(created);
+        } catch (Exception e) {
+            return ResponseUtils.error(ResponseCode.INTERNAL_SERVER_ERROR, "注册失败: " + e.getMessage());
+        }
     }
 
     //修改数据
