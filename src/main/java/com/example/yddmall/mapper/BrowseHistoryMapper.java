@@ -15,7 +15,7 @@ public interface BrowseHistoryMapper extends BaseMapper<BrowseHistory> {
 
     @Select("SELECT i.item_id AS itemId, i.title AS title, i.price AS price, i.pic_url AS picUrl, h.visited_at AS visitedAt " +
             "FROM browse_history h JOIN item i ON h.item_id = i.item_id " +
-            "WHERE h.user_id = #{userId} ORDER BY h.visited_at DESC LIMIT #{pageSize} OFFSET #{offset}")
+            "WHERE h.user_id = #{userId} ORDER BY h.visited_at DESC LIMIT #{offset}, #{pageSize}")
     List<FootprintItemVO> selectItemFootprints(@Param("userId") Long userId,
                                                @Param("offset") int offset,
                                                @Param("pageSize") int pageSize);
