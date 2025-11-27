@@ -4,8 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
 public class JwtUtil {
-    // 请替换为实际签名密钥，这里仅为示例密钥，可在配置文件读取
-    private static final String SECRET_KEY = "yourSecretKey";
+    private static final String SECRET_KEY = System.getenv("JWT_SECRET") != null ? System.getenv("JWT_SECRET") : "yourSecretKey";
 
     /**
      * 从JWT token中解析出userId（支持 userId 为 Long/Integer/String）
