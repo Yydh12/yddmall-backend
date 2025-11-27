@@ -49,16 +49,15 @@ public class UserController {
 
     @PostMapping("/login")
     public ApiResponse<LoginResponse> login(@RequestBody @Validated User user, HttpServletRequest request) {
-//        System.out.println(user);
-        User user1 = userService.login(user);
-//        System.out.println(user1);
-        if(user1 != null){
-            // 生成JWT token
-            String token = JwtUtil.generateToken(user1.getUserId());
-            // 将token和用户信息一起返回
-            return ResponseUtils.success(new LoginResponse(user1, token));
-        }else {
-            return ResponseUtils.error(ResponseCode.BAD_REQUEST);
+        try {
+            User dbUser = userService.login(user);
+            if (dbUser != null) {
+                String token = JwtUtil.generateToken(dbUser.getUserId());
+                return ResponseUtils.success(new LoginResponse(dbUser, token));
+            }
+            return ResponseUtils.error(ResponseCode.BAD_REQUEST, "用户名或密码错误");
+        } catch (Exception e) {
+            return ResponseUtils.error(ResponseCode.INTERNAL_SERVER_ERROR, "登录失败: " + e.getMessage());
         }
     }
 

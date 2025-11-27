@@ -31,38 +31,59 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User login(User user) {
-        // 1. 根据用户名一次性查出唯一用户
         User dbUser = userMapper.selectOne(
                 new QueryWrapper<User>().eq("username", user.getUsername())
         );
         if (dbUser == null) return null;
 
-        // 2. 校验密码
-        return PasswordUtils.verifyPassword(
-                user.getPassword(),
-                dbUser.getPassword(),
-                dbUser.getSalt())
-                ? dbUser
-                : null;
+        String storedPwd = dbUser.getPassword();
+        String salt = dbUser.getSalt();
+        boolean match;
+        if (salt == null || salt.trim().isEmpty()) {
+            match = storedPwd != null && storedPwd.equals(user.getPassword());
+            if (match) {
+                String[] enc = PasswordUtils.encryptPassword(user.getPassword());
+                dbUser.setPassword(enc[0]);
+                dbUser.setSalt(enc[1]);
+                userMapper.updateById(dbUser);
+            }
+        } else {
+            try {
+                match = PasswordUtils.verifyPassword(user.getPassword(), storedPwd, salt);
+            } catch (RuntimeException e) {
+                match = false;
+            }
+        }
+        return match ? dbUser : null;
     }
 
     @Override
     public User loginByPhone(User user) {
-        // 1. 根据手机号查唯一用户（忽略空字符串）
         String phone = trimToNull(user.getPhone());
         if (phone == null) return null;
         User dbUser = userMapper.selectOne(
                 new QueryWrapper<User>().eq("phone", phone)
         );
         if (dbUser == null) return null;
-
-        // 2. 校验密码
-        return PasswordUtils.verifyPassword(
-                user.getPassword(),
-                dbUser.getPassword(),
-                dbUser.getSalt())
-                ? dbUser
-                : null;
+        String storedPwd = dbUser.getPassword();
+        String salt = dbUser.getSalt();
+        boolean match;
+        if (salt == null || salt.trim().isEmpty()) {
+            match = storedPwd != null && storedPwd.equals(user.getPassword());
+            if (match) {
+                String[] enc = PasswordUtils.encryptPassword(user.getPassword());
+                dbUser.setPassword(enc[0]);
+                dbUser.setSalt(enc[1]);
+                userMapper.updateById(dbUser);
+            }
+        } else {
+            try {
+                match = PasswordUtils.verifyPassword(user.getPassword(), storedPwd, salt);
+            } catch (RuntimeException e) {
+                match = false;
+            }
+        }
+        return match ? dbUser : null;
     }
 
     @Override
