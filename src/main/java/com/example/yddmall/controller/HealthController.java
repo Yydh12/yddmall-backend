@@ -1,21 +1,16 @@
 package com.example.yddmall.controller;
 
+import com.example.yddmall.config.ApiResponse;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 @RestController
+@RequestMapping("/healthz")
 public class HealthController {
-
-    @GetMapping("/health")
-    public String health() {
-        return "OK";
-    }
-
-    @GetMapping("/api/health")
-    public Map<String, String> apiHealth() {
-        return Map.of("status", "UP", "service", "yddmall-backend");
+    @GetMapping
+    public ApiResponse<String> ok() {
+        return new ApiResponse<>(200, "ok", "ok");
     }
 }
 
