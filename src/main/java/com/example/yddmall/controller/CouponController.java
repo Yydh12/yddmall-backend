@@ -35,6 +35,9 @@ public class CouponController {
     @PostMapping("/claim/{couponId}")
     public ApiResponse<Boolean> claim(@PathVariable Long couponId, HttpServletRequest request) {
         Long userId = SessionUserUtils.getUserId(request);
+        if (userId == null) {
+            return ResponseUtils.unauthorized("请先登录");
+        }
         boolean ok = couponService.claim(couponId, userId);
         if (ok) return ResponseUtils.success(true);
         return ResponseUtils.error(ResponseCode.BAD_REQUEST, "领取失败或不满足条件");
@@ -47,6 +50,9 @@ public class CouponController {
             @RequestParam(value = "orderNo", required = false) String orderNo
     ) {
         Long userId = SessionUserUtils.getUserId(request);
+        if (userId == null) {
+            return ResponseUtils.unauthorized("请先登录");
+        }
         List<UserCoupon> list;
         if (status == null && (orderNo == null || orderNo.isEmpty())) {
             list = couponService.listUserCoupons(userId);

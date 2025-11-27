@@ -8,6 +8,7 @@ E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\config\Page
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\config\ResponseCode.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\config\SecurityConfig.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\config\WebConfig.java
+E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\config\WebMvcConfig.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\AddressController.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\CartController.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\CategoryPropController.java
@@ -19,6 +20,7 @@ E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\FavoriteController.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\FootprintController.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\GeoController.java
+E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\HealthController.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\ItemCategoryController.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\ItemController.java
 E:\bysj\有点多商城-v1\yddmall\src\main\java\com\example\yddmall\controller\ItemPropController.java

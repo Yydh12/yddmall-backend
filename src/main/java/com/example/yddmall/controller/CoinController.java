@@ -20,12 +20,18 @@ public class CoinController {
     @GetMapping("/wallet")
     public ApiResponse<UserCoinWallet> wallet(HttpServletRequest request) {
         Long userId = SessionUserUtils.getUserId(request);
+        if (userId == null) {
+            return ResponseUtils.unauthorized("请先登录");
+        }
         return ResponseUtils.success(walletService.getOrCreate(userId));
     }
 
     @PostMapping("/signin")
     public ApiResponse<UserCoinWallet> signin(HttpServletRequest request, @RequestParam(value = "coins", required = false) Long coins) {
         Long userId = SessionUserUtils.getUserId(request);
+        if (userId == null) {
+            return ResponseUtils.unauthorized("请先登录");
+        }
         long add = coins != null ? coins : 10L; // default daily sign-in reward
         return ResponseUtils.success(walletService.dailySignIn(userId, add));
     }

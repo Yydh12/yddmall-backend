@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @TableName("user_coin_wallet")
 @Schema(description = "用户金币钱包")
 public class UserCoinWallet {
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     @TableField("user_id")

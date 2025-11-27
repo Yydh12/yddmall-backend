@@ -58,6 +58,9 @@ public class RedPacketController {
     @PostMapping("/claim/{id}")
     public ApiResponse<Boolean> claim(@PathVariable("id") Long id, HttpServletRequest request) {
         Long userId = SessionUserUtils.getUserId(request);
+        if (userId == null) {
+            return ResponseUtils.unauthorized("请先登录");
+        }
         boolean ok = redPacketService.claim(id, userId);
         if (ok) return ResponseUtils.success(true);
         return ResponseUtils.error(ResponseCode.BAD_REQUEST, "领取失败或不满足条件");
@@ -70,6 +73,9 @@ public class RedPacketController {
             @RequestParam(value = "orderNo", required = false) String orderNo
     ) {
         Long userId = SessionUserUtils.getUserId(request);
+        if (userId == null) {
+            return ResponseUtils.unauthorized("请先登录");
+        }
         List<UserRedPacket> list;
         if (status == null && (orderNo == null || orderNo.isEmpty())) {
             list = redPacketService.listUserRedPackets(userId);
